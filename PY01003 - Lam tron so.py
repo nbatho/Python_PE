@@ -2,7 +2,6 @@ for i in range(int(input())):
     n = input()
     nho = 0
     ans = ""
-    nho = 0
     if int(n[len(n) -1]) >= 5 and len(n) > 1:
         ans += "0"
         nho = 1
