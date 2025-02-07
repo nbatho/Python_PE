@@ -11,7 +11,6 @@ for _ in range(int(input())):
         found = True
         for i in range(0,len(n)):
             if int(n[i]) > Idx:
-                # print(i,n[i], sep = " ",end = "\n")
                 Idx = int(n[i])
             else: 
                 pos = i
