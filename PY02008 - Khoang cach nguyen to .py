@@ -1,7 +1,7 @@
 import math
 limit =10001
 
-def seive(limit):
+def sieve(limit):
     prime=[True]*limit
     prime[0] = prime[1] =False
     for i in range(2,int(math.sqrt(limit)) +1):
@@ -16,7 +16,7 @@ def seive(limit):
                 
      
 n ,k= map(int,input().split())
-primes=seive(limit)
+primes=sieve(limit)
 cnt =0
 print(k,end=" ")
 for i in range(n):
