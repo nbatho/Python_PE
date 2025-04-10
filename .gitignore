@@ -2,3 +2,6 @@
 *.prob
 *.xml
 *.iml
+*.txt
+*.in
+*.out
