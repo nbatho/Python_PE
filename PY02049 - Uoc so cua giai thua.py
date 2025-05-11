@@ -9,8 +9,6 @@ def max_power_in_factorial(n, p):
         x += n // power
         power *= p
     return x
-
-# Ví dụ:
 for _ in range(int(input())):
     n,p = [int(x) for x in input().split()]
     print(max_power_in_factorial(n, p)) 
