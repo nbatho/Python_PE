@@ -1,36 +1,30 @@
-from decimal import ROUND_HALF_UP, Decimal
-cnt = 1
-class HocSinh:
-    diemTrungBinh = 0
-    mhs = "HS"
-    XepHang = ""
-    def __init__(self,ten,diem):
-        global cnt
-        if cnt < 10:
-            self.mhs += "0" + str(cnt)
-        else:
-            self.mhs += str(cnt)
-        cnt += 1
+class Diem:
+    def __init__(self,id,ten,diem):
+        if id < 10:
+            self.ma = "HS0" + str(id)
+        elif id < 100:
+            self.ma = "HS" + str(id)
         self.ten = ten
-        x = 2*diem[0] + 2*diem[1]
+        self.tb = diem[0]*2 + diem[1]*2
         for i in range(2,10):
-            x += diem[i]
-        x/=12
-        if x < 5 : self.XepHang = 'YEU'
-        elif x < 7 : self.XepHang = 'TB'
-        elif x < 8 : self.XepHang = 'KHA'
-        elif x < 9 : self.XepHang = 'GIOI'
-        else : self.XepHang = 'XUAT SAC'
-        self.diemTrungBinh = x.quantize(Decimal('0.1'), ROUND_HALF_UP)
-    def info(self):
-        print(self.mhs,self.ten,self.diemTrungBinh,self.XepHang)
-
-
+            self.tb += diem[i]
+        
+        self.tb /= 12
+        self.xep_hang = ""
+        if self.tb < 5 : self.xep_hang = 'YEU'
+        elif self.tb < 7 : self.xep_hang = 'TB'
+        elif self.tb < 8 : self.xep_hang = 'KHA'
+        elif self.tb < 9 : self.xep_hang = 'GIOI'
+        else : self.xep_hang = 'XUAT SAC'
+        self.tb = round(self.tb + 1e-8, 1)
+    def output(self):
+        print(self.ma,self.ten,self.tb,self.xep_hang)
 a = []
-for _ in range(int(input())):
+for i in range(int(input())):
     ten = input()
-    diem = [Decimal(x) for x in input().split()]
-    a.append(HocSinh(ten,diem))
-a = sorted(a,key = lambda x:( -x.diemTrungBinh,x.mhs))
+    diem_mon = [float(x) for x in input().split()]
+    a.append(Diem(i+1,ten,diem_mon))
+a = sorted(a,key= lambda x: (-x.tb,x.ma) )
 for i in a:
-    i.info()
+    i.output()
+    
